@@ -1,0 +1,186 @@
+.home
+{
+    display: flex;
+    justify-content: space-between;
+    &__left
+    {
+        width: 22%;
+        height: 100vh;
+        background-color: aqua;
+        position: fixed;
+        figure
+        {
+            display: flex;
+            flex-direction: column;
+            height: 30%;
+            background-color: aqua;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            img
+            {
+                width: 70%;
+            }
+
+            h2
+            {
+                position: absolute;
+                left: 41%;
+                top: 85%;
+                font-size: 1.4vw;
+            }
+        }
+
+        .menu
+        {
+            height: 70%;
+            background-color: red;
+            display: flex;
+            flex-direction: column;
+            
+            .titleMenu
+            {
+                font-weight: bold;
+                color: rgb(43, 119, 189);
+                margin-left: 10%;
+                padding-top: 5vw;
+                font-size: 1.2vw;
+                padding-bottom: 3vw;
+            }
+
+            .option
+            {
+                font-weight: bold;
+                color: rgb(43, 119, 189);
+                margin-left: 10%;
+                width: 90%;
+                height: 6%;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                padding-left: 5%;
+                font-size: 1.2vw;
+                cursor: pointer;
+
+                &:hover
+                {
+                    background-color: yellow;
+                }
+                margin-bottom: 20%;
+            }
+        }
+
+    }
+
+    &__right
+    {
+        margin-left: 22.5%;
+        width: 77.5%;
+        height: 100vh;
+        background-color: red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .searchEngine
+        {
+            height: 13vh;
+            background: green;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .titleSelected
+            {
+                font-size: 2vw;
+                padding-left: 3vw;
+
+            }
+
+            .mySearch
+            {
+                display: flex;
+                align-items: center;
+                
+
+                .figureFilter
+                {
+                    width: 35px;
+                    height: 35px;
+                    background-color: aqua;
+                    margin-top: 10px;
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    justify-content: center;
+                    border-radius: 2px;
+                    img
+                    {
+                        width: 30px;
+                        height: 30px;
+                        
+                    }
+                }
+            }
+        }
+
+        .container
+        {
+            height: 86.2vh;
+            background-color: black;
+
+            .actionsBoard
+            {
+                background-color: yellow;
+                height: 20%;
+                display: flex;
+                justify-content: space-between;
+                align-content: center;
+                align-content: center;
+                
+
+                .addSystem
+                {
+                    margin-left: 3vw;
+                    align-self: center;
+                    p{
+
+                        background-color: violet;
+                        padding-left: 1vw;
+                        padding-right: 1vw;
+                        padding-top: 0.75vw;
+                        padding-bottom: 0.75vw;
+                        border-radius: 0.5vw;
+                    }
+                }
+
+                .classystem
+                {
+                    margin-right: 6vw;
+                    align-self: center;
+                    p{
+
+                        background-color: violet;
+                        padding-left: 1vw;
+                        padding-right: 1vw;
+                        padding-top: 0.75vw;
+                        padding-bottom: 0.75vw;
+                        border-radius: 0.5vw;
+                    }
+                }
+            }
+
+            .board {
+                background-color: gray;
+                min-height: 80%;
+                height: max-content;
+                padding: 0.5vw 3vw 0.5vw 3vw;
+                display: flex;
+                flex-wrap: wrap;  // Permite que los elementos se envuelvan a la siguiente línea
+                gap: 2vw;         // Añade espacio entre los elementos
+                justify-content: space-between;
+              }
+        }
+
+    }
+}

@@ -1,0 +1,165 @@
+// Importa la imagen de fondo
+$backgroundImage: url('https://i.ibb.co/HGk0H0N/82491eeb-6c99-48d5-9af4-5cac8da0643a.jpg');
+
+// Estilos para el componente Login
+.login-container {
+    height: 100vh; // Ajusta la altura según tus necesidades
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    // Establece la imagen de fondo
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: $backgroundImage;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.8; // Ajusta la opacidad según tus preferencias
+        z-index: -1; // Coloca la imagen de fondo detrás del contenido
+    }
+
+    // Estilos para el cuadro de contenido
+    .content-box {
+        background-color: rgba(255, 255, 255, 0.9); // Ajusta el color de fondo y la opacidad según tus preferencias
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Ajusta la sombra según tus preferencias
+    }
+
+    .form {
+        display: flex;
+        width: 70vw;
+        height: 90vh;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+        border-radius: 2vw;
+
+        @media screen and (max-width: 700px) {
+          height: 80vh;
+      }
+        @media screen and (max-width: 400px) {
+          height: 65vh;
+      }
+
+
+        
+
+        @media screen and (max-width: 700px) {
+            flex-direction: column;
+        }
+
+        &__left {
+            background-color: rgba(0, 140, 255, 0.5);
+            width: 100%; // Cambiado para ocupar el ancho completo en dispositivos móviles
+            display: flex;
+            border-radius: 2vw 0vw 0vw 2vw; // Ajustado para mantener la esquina superior izquierda redondeada
+            @media screen and (max-width: 700px) {
+              height: 30%;
+              border-radius: 2vw 2vw 0vw 0vw; // Ajustado para mantener la esquina inferior derecha redondeada
+
+          }
+            .logoLogin {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                align-content: center;
+                justify-content: center;
+
+                h2
+                {
+                    font: optional;
+                    font-size: 2rem;
+
+                    @media screen and (max-width: 700px) {
+                       
+                        display: none;
+                    }
+
+                }
+
+                .imgLogin {
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    justify-content: center;
+                    width: 120%;
+
+                    @media screen and (max-width: 700px) {
+                      width: 75%;
+
+                  }
+
+                  @media screen and (max-width: 400px) {
+                    width: 100%;
+                }
+                }
+            }
+        }
+
+        &__right {
+            background-color: rgba(255, 255, 255, 0.7);
+            width: 100%; // Cambiado para ocupar el ancho completo en dispositivos móviles
+            filter: blur(0); // Corrige el valor del filtro de desenfoque
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 0vw 2vw 2vw 0vw; // Ajustado para mantener la esquina inferior derecha redondeada
+
+            @media screen and (max-width: 700px) {
+              height: 70%;
+              border-radius: 0vw 0vw 2vw 2vw; // Ajustado para mantener la esquina inferior derecha redondeada
+
+          }
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                h2 {
+                    margin-bottom: 20px;
+                    font-size: 1.5rem;
+                    color: #333;
+                }
+
+                label {
+                    margin-top: 10px;
+                    font-size: 1rem;
+                    color: #333;
+                }
+
+                input {
+                    width: 100%; // Ajusta el ancho al 100%
+                    padding: 10px;
+                    margin: 5px 0 15px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    box-sizing: border-box;
+                    font-family: 'Roboto', sans-serif;
+                }
+
+                button {
+                    background-color: #007bff;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-size: 1rem;
+
+                    &:hover
+                    {
+                      background-color: #0d6acc;
+                      transition: all 0.3s ease; // Transición suave
+
+
+                    }
+                }
+            }
+        }
+    }
+}

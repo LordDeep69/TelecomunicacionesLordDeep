@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@100&display=swap');
+
+.systemCard
+{
+    display: flex;
+    width: 33vw;
+    height: 10.95vw;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 1vw;
+
+    &__picture
+    {
+        img
+        {
+            width: 12vw;
+        }
+    }
+
+    &__info
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+
+        .nameSystem
+        {
+                text-align: center;   
+                align-items: center;
+                align-content: center;
+                align-self: center;   
+                padding-bottom: 1.9vw;      
+                font-weight: bold;
+                font-size: 1.2vw;
+        }
+
+        .dataSystem
+        {
+            display: flex;
+            gap: 2vw;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1vw;
+            margin-right: 1vw;
+
+            
+
+
+
+
+            .dataOne, .dataTwo
+            {
+                display: flex;
+                flex-direction: column;
+                gap: 1.9vw;
+                font-size: 1.1vw;
+
+                p
+                {
+                    span
+                    {
+                        color: rgb(155, 155, 155);
+                        font-size: 1.1vw;
+                    }
+                }
+                
+            }
+        }
+    }   
+}
