@@ -12,6 +12,17 @@ interface FormData {
   age: number
   gender: string
   rating: number
+  temperatureOil: number
+  pressure: number
+  statuPressureOilLow: string
+  statuPressureOilHight: string
+  generatorRpm: number
+  generatorOperation: string
+  generatorAutomatic: string
+  generatorManual: string
+  generatorRemoteBlock: string
+  generatorCB: string
+  generatorFailure: string
 }
 
 const Rounds: React.FC = () => {
@@ -78,7 +89,7 @@ const Rounds: React.FC = () => {
 
                             <span className='history'>
                                 <figure className='historyFigure'>
-                                    <img className = 'historyImg' src="https://i.ibb.co/xL4RpZw/image-6.png" alt="history" />
+                                    <img className='historyImg' src="https://i.ibb.co/xL4RpZw/image-6.png" alt="history" />
                                 </figure>
 
                                 <p>Historial</p>
@@ -93,68 +104,327 @@ const Rounds: React.FC = () => {
             <section className='formatRound'>
 
                 <section className='elementsSystem'>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
-                    <ElementRound/>
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
+                    <ElementRound />
 
                 </section>
                 <section className='format'>
 
-                    <title>Motor</title>
+                    <span className='titleElement'>Generador</span>
                     <section className='formatRoundlement'>
-                        <form>
+                        <span className='titleRegister'>REGISTRO</span>
+                        <form className='formElementSelected'>
 
-                            {/* // Campo de texto para el nombre, requerido y con un mínimo de 3 caracteres */}
-                            <label htmlFor='name'>Nombre</label>
-                            <input type='text' id='name' {...register('name', { required: true, minLength: 3 })} />
-                            {/* // Muestra el error si el campo no es válido */}
-                            {errors.name != null && <p>El nombre es obligatorio y debe tener al menos 3 caracteres</p>}
+                            <article className='containerInputs'>
+                                <span className='titleInput'>Aceite</span>
+                                <div className='divider'></div> {/* Línea divisoria */}
+                                <section className='inputsAll'>
 
-                            {/* // Campo de contraseña para la contraseña, requerido y con un mínimo de 6 caracteres */}
-                            <label htmlFor='password'>Contraseña</label>
-                            <input type='password' id='password' {...register('password', { required: true, minLength: 6 })} />
-                            {/* // Muestra el error si el campo no es válido */}
-                            {errors.password != null && <p>La contraseña es obligatoria y debe tener al menos 6 caracteres</p>}
+                                    <div className='oneInput'>
 
-                            {/* // Campo de email para el correo electrónico, requerido y con formato de email */}
-                            <label htmlFor='email'>Correo electrónico</label>
-                            <input type='email' id='email' {...register('email', { required: true, pattern: /^\S+@\S+\.\S+$/ })} />
-                            {/* // Muestra el error si el campo no es válido */}
-                            {errors.email != null && <p>El correo electrónico es obligatorio y debe tener un formato válido</p>}
+                                        <label htmlFor='pressure'>Presión de Aceite (bar) </label>
+                                        <input
+                                            type='number'
+                                            id='pressure'
+                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Presión'
+                                        />
 
-                            {/* // Campo de número para la edad, requerido y con un valor entre 18 y 99 */}
-                            <label htmlFor='age'>Edad</label>
-                            <input type='number' id='age' {...register('age', { required: true, min: 18, max: 99 })} />
-                            {/* // Muestra el error si el campo no es válido */}
-                            {errors.age != null && <p>La edad es obligatoria y debe estar entre 18 y 99 años</p>}
+                                    </div>
 
-                            {/* // Campo de selector para el género, requerido y con dos opciones: masculino y femenino */}
-                            <label htmlFor='gender'>Género</label>
-                            <select id='gender' {...register('gender', { required: true })}>
-                            <option value=''>Selecciona una opción</option>
-                            <option value='masculino'>Masculino</option>
-                            <option value='femenino'>Femenino</option>
-                            </select>
-                            {/* // Muestra el error si el campo no es válido */}
-                            {errors.gender != null && <p>El género es obligatorio</p>}
+                                    <div className='oneInput'>
 
-                            {/* // Campo de rango para la valoración, opcional y con un valor entre 1 y 5 */}
-                            <label htmlFor='rating'>Valoración</label>
-                            <input type='range' id='rating' {...register('rating', { min: 1, max: 5 })} />
-                            {/* // No muestra ningún error, ya que el campo es opcional */}
+                                        <label htmlFor='temperature'>Temperatura (°C) </label>
+                                        <input
+                                            type='number'
+                                            id='temperature'
+                                            {...register('temperatureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Ingrese en unidad de °C'
+                                        />
 
-                            <span onClick={() => { handleLoginClick() }}>ENVIAR</span>
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Baja Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilLow', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Alta Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilHight', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                </section>
+
+                            </article>
+
+                            <article className='containerInputs'>
+                                <span className='titleInput'>Estado</span>
+                                <div className='divider'></div> {/* Línea divisoria */}
+                                <section className='inputsAll'>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='pressure'>Rpm Generador (bar) </label>
+                                        <input
+                                            type='number'
+                                            id='generatorRpm'
+                                            {...register('generatorRpm', { required: true, min: -50, max: 50 })}
+                                            placeholder='Rpm'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Generador Operado </label>
+                                        <select id='generatorOperation' {...register('generatorOperation', { required: true })}>
+                                            <option value='Not Running'>Not Running</option>
+                                            <option value='Runing'>Runing</option>
+                                        </select>
+
+                                    </div>
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Generador en Automático </label>
+                                        <select id='generatorAutomatic' {...register('generatorAutomatic', { required: true })}>
+                                            <option value='On'>On</option>
+                                            <option value='Off'>Off</option>
+                                        </select>
+
+                                    </div>
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Generador Arranque Manual</label>
+                                        <select id='generatorManual' {...register('generatorManual', { required: true })}>
+                                            <option value='On'>On</option>
+                                            <option value='Off'>Off</option>
+                                        </select>
+
+                                    </div>
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Remoto Bloqueado </label>
+                                        <select id='generatorRemoteBlock' {...register('generatorRemoteBlock', { required: true })}>
+                                            <option value='On'>On</option>
+                                            <option value='Off'>Off</option>
+                                        </select>
+
+                                    </div>
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>CB Estado </label>
+                                        <select id='generatorCB' {...register('generatorCB', { required: true })}>
+                                            <option value='On'>On</option>
+                                            <option value='Off'>Off</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Falla del Generador</label>
+                                        <select id='generatorFailure' {...register('generatorFailure', { required: true })}>
+                                            <option value='Normal'>Not Failure</option>
+                                            <option value='Alerta'>Alarm</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                </section>
+
+                            </article>
+
+                            <article className='containerInputs'>
+                                <span className='titleInput'>Aceite</span>
+                                <div className='divider'></div> {/* Línea divisoria */}
+                                <section className='inputsAll'>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='pressure'>Presión de Aceite (bar) </label>
+                                        <input
+                                            type='number'
+                                            id='pressure'
+                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Presión'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Temperatura (°C) </label>
+                                        <input
+                                            type='number'
+                                            id='temperature'
+                                            {...register('temperatureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Ingrese en unidad de °C'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Baja Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilLow', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Alta Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilHight', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                </section>
+
+                            </article>
+
+                            <article className='containerInputs'>
+                                <span className='titleInput'>Aceite</span>
+                                <div className='divider'></div> {/* Línea divisoria */}
+                                <section className='inputsAll'>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='pressure'>Presión de Aceite (bar) </label>
+                                        <input
+                                            type='number'
+                                            id='pressure'
+                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Presión'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Temperatura (°C) </label>
+                                        <input
+                                            type='number'
+                                            id='temperature'
+                                            {...register('temperatureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Ingrese en unidad de °C'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Baja Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilLow', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Alta Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilHight', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                </section>
+
+                            </article>
+
+                            <article className='containerInputs'>
+                                <span className='titleInput'>Aceite</span>
+                                <div className='divider'></div> {/* Línea divisoria */}
+                                <section className='inputsAll'>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='pressure'>Presión de Aceite (bar) </label>
+                                        <input
+                                            type='number'
+                                            id='pressure'
+                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Presión'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='temperature'>Temperatura (°C) </label>
+                                        <input
+                                            type='number'
+                                            id='temperature'
+                                            {...register('temperatureOil', { required: true, min: -50, max: 50 })}
+                                            placeholder='Ingrese en unidad de °C'
+                                        />
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Baja Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilLow', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div className='oneInput'>
+
+                                        <label htmlFor='oilPressure'>Alta Presión de Aceite</label>
+                                        <select id='oilPressure' {...register('statuPressureOilHight', { required: true })}>
+                                            <option value='Normal'>Normal</option>
+                                            <option value='Alerta'>Critical</option>
+                                            <option value='Revisión'>Revisión</option>
+                                        </select>
+
+                                    </div>
+
+                                </section>
+
+                            </article>
 
                         </form>
+                        <span className='buttonRegisterElement'>Registrar</span>
 
                     </section>
                     <section className='registerRound'>
