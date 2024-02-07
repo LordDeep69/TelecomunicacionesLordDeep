@@ -27,15 +27,15 @@ interface FormData {
 
 const Rounds: React.FC = () => {
   // Crea una instancia de useForm con el tipo de los datos
-  const { register, formState: { errors }, watch } = useForm<FormData>()
-  const watchFields = watch() // Observa todos los campos
+  const { register } = useForm<FormData>()
+  //   const watchFields = watch() // Observa todos los campos
 
   // Define la función que se ejecuta al enviar el formulario
 
-  const handleLoginClick = (): void => {
-    // Acción a realizar cuando se hace clic en el botón de ingresar
-    console.log('Datos del formulario:', watchFields)
-  }
+  //   const handleLoginClick = (): void => {
+  //     // Acción a realizar cuando se hace clic en el botón de ingresar
+  //     console.log('Datos del formulario:', watchFields)
+  //   }
 
   return (
         <main className='round'>
@@ -135,7 +135,7 @@ const Rounds: React.FC = () => {
                                         <input
                                             type='number'
                                             id='pressure'
-                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            {...register('pressure', { required: true, min: -50, max: 50 })}
                                             placeholder='Presión'
                                         />
 
@@ -268,7 +268,7 @@ const Rounds: React.FC = () => {
                                         <input
                                             type='number'
                                             id='pressure'
-                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            {...register('pressure', { required: true, min: -50, max: 50 })}
                                             placeholder='Presión'
                                         />
 
@@ -323,7 +323,7 @@ const Rounds: React.FC = () => {
                                         <input
                                             type='number'
                                             id='pressure'
-                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            {...register('pressure', { required: true, min: -50, max: 50 })}
                                             placeholder='Presión'
                                         />
 
@@ -378,7 +378,7 @@ const Rounds: React.FC = () => {
                                         <input
                                             type='number'
                                             id='pressure'
-                                            {...register('pressureOil', { required: true, min: -50, max: 50 })}
+                                            {...register('pressure', { required: true, min: -50, max: 50 })}
                                             placeholder='Presión'
                                         />
 
