@@ -26,6 +26,17 @@
         align-content: center;
         align-self: center;
 
+        &.twoInfo
+        {
+            width: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            align-self: center;
+            
+        }
+
         .nameSystem
         {
                 text-align: center;   
@@ -44,6 +55,11 @@
             font-family: 'Roboto', sans-serif;
             font-size: 1.1vw;
             margin-right: 1vw;
+
+            &.twoDataSystem
+            {
+                color: red;
+            }
 
             
 

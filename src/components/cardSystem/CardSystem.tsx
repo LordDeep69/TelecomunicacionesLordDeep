@@ -1,8 +1,13 @@
 import React from 'react'
 import './cardSystem.scss'
+import { useNavigate } from 'react-router-dom'
 const CardSystem: React.FC = () => {
+  const navigate = useNavigate()
+  const handleGo = (): void => {
+    navigate('/round')
+  }
   return (
-    <article className='systemCard'>
+    <article className='systemCard' onClick={() => { handleGo() }}>
         <figure className='systemCard__picture'>
             <img src="https://i.ibb.co/fDDv9H6/Mask-group.png" alt="Imagen del Sistema" />
         </figure>
