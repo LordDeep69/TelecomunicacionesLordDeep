@@ -49,18 +49,17 @@ const Home: React.FC = () => {
 
           </section>
           <section className='board'>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
-            <CardSystem/>
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+
+          <CardSystem imgSystemGlobal='https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2022/05/04/16516741859149.jpg' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+          <CardSystem imgSystemGlobal='https://i.ibb.co/fDDv9H6/Mask-group.png' nameSystemGlobal='Buque Z' />
+
           </section>
         </section>
       </section>

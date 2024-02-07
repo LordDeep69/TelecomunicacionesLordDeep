@@ -1,7 +1,13 @@
 import React from 'react'
 import './cardSystem.scss'
 import { useNavigate } from 'react-router-dom'
-const CardSystem: React.FC = () => {
+
+interface Props {
+  imgSystemGlobal: string
+  nameSystemGlobal: string
+}
+
+const CardSystem: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal }) => {
   const navigate = useNavigate()
   const handleGo = (): void => {
     navigate('/round')
@@ -9,11 +15,11 @@ const CardSystem: React.FC = () => {
   return (
     <article className='systemCard' onClick={() => { handleGo() }}>
         <figure className='systemCard__picture'>
-            <img src="https://i.ibb.co/fDDv9H6/Mask-group.png" alt="Imagen del Sistema" />
+            <img src={imgSystemGlobal} alt="Imagen del Sistema" />
         </figure>
 
         <div className='systemCard__info'>
-            <span className='nameSystem'>Buque A</span>
+            <span className='nameSystem'>{nameSystemGlobal}</span>
             <div className='dataSystem'>
                 <span className='dataOne'>
                     <p> <span>Tipo:</span> Guerra</p>

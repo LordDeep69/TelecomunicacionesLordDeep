@@ -30,6 +30,8 @@ module.exports = {
   ],
   rules: {
     indent: 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-misused-promises': 'off'
+
   }
 }

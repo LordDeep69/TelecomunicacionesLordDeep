@@ -3,6 +3,7 @@ import './login.scss'
 import { useForm } from 'react-hook-form'
 import { useAppDispatch } from '../../hooks/reduxHooks' // Asegúrate de importar correctamente el hook
 import { setUserLogged } from '../../redux/features/userLogged/userLoggedSlice'
+import Swal from 'sweetalert2'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -12,21 +13,38 @@ interface FormData {
 }
 
 const Login: React.FC = () => {
+  interface ValidUser {
+    email: string
+    password: string
+  }
+
+  const validUsers: ValidUser[] = [
+    { email: 'usuario1@example.com', password: 'contraseña1' },
+    { email: 'usuario2@example.com', password: 'contraseña2' }
+    // Agrega más usuarios según sea necesario
+  ]
   const navigate = useNavigate()
   const { register, watch } = useForm<FormData>()
   const dispatch = useAppDispatch() // Obtén el despachador de Redux
 
   const watchFields = watch() // Observa todos los campos
 
-  const handleLoginClick = (): void => {
-    // Acción a realizar cuando se hace clic en el botón de ingresar
-    console.log('Datos del formulario:', watchFields)
+  const handleLoginClick = async (): Promise<void> => {
+    const { email, password } = watchFields
 
-    // Despachar la acción setUserLogged con los datos del formulario
-    dispatch(setUserLogged({ email: watchFields.email, password: watchFields.password }))
-    navigate('/home')
+    // Verificar si las credenciales coinciden con algún usuario válido
+    const validUser = validUsers.find(user => user.email === email && user.password === password)
 
-    // Puedes realizar aquí la lógica necesaria con los datos del formulario
+    if (validUser !== undefined) {
+      // Usuario válido, muestra un mensaje de bienvenida
+      await Swal.fire('¡Bienvenido!', `Hola, ${email}!`, 'success')
+      // Despacha la acción setUserLogged con los datos del usuario
+      dispatch(setUserLogged({ email, password }))
+      navigate('/home')
+    } else {
+      // Credenciales inválidas, muestra un mensaje de error
+      await Swal.fire('Error', 'Usuario o contraseña incorrectos', 'error')
+    }
   }
 
   return (
@@ -53,7 +71,7 @@ const Login: React.FC = () => {
             <input type="password" id="password" {...register('password')} />
 
             {/* Botón de ingresar */}
-            <button type="button" onClick={handleLoginClick}>Ingresar</button>
+            <button type="button" onClick={async () => { await (async () => { await handleLoginClick() })() }}>Ingresar</button>
           </form>
         </section>
       </section>
