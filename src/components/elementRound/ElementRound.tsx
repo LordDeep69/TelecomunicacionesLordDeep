@@ -1,14 +1,20 @@
 import React from 'react'
 import './elementRound.scss'
-const ElementRound: React.FC = () => {
+
+interface Props {
+  imgSystemGlobal: string
+  nameSystemGlobal: string
+}
+
+const ElementRound: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal }) => {
   return (
     <article className='element'>
 
         <figure>
-            <img className='imgElement' src="https://www.eduardono.com/cdn/shop/products/generadoresplantas-electricas-2600w-120v-871624.png?v=1663087737" alt="element" />
+            <img className='imgElement' src={imgSystemGlobal} alt="element" />
         </figure>
 
-        <p className='nameElement'>Generador</p>
+        <p className='nameElement'>{nameSystemGlobal}</p>
 
         <figure className='figureStatuElement'>
             <img className='statuElement' src="https://i.ibb.co/JzRzFNr/image-9-1.png" alt="Estado" />

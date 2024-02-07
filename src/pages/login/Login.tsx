@@ -19,8 +19,8 @@ const Login: React.FC = () => {
   }
 
   const validUsers: ValidUser[] = [
-    { email: 'usuario1@example.com', password: 'contraseña1' },
-    { email: 'usuario2@example.com', password: 'contraseña2' }
+    { email: 'lordDeep@utb.edu.co', password: '12345' },
+    { email: 'lordHenry@utb.edu.co', password: '54321' }
     // Agrega más usuarios según sea necesario
   ]
   const navigate = useNavigate()

@@ -104,18 +104,17 @@ const Rounds: React.FC = () => {
             <section className='formatRound'>
 
                 <section className='elementsSystem'>
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
-                    <ElementRound />
+                    <ElementRound imgSystemGlobal='https://galaico.com.co/wp-content/uploads/2020/04/AP-170FB.png' nameSystemGlobal='Motor'/>
+
+                    <ElementRound imgSystemGlobal='https://http2.mlstatic.com/D_NQ_NP_780236-MCO52390227857_112022-O.webp' nameSystemGlobal='Aiere'/>
+
+                    <ElementRound imgSystemGlobal='https://static.vecteezy.com/system/resources/previews/028/078/384/original/industrial-electric-generator-engine-isometric-free-png.png' nameSystemGlobal='Generador'/>
+
+                    <ElementRound imgSystemGlobal='https://www.roxell.com/sites/default/files/styles/full_width_preserve_ratio_desktop/public/2022-03/heating-direct-fired-cannon-heater-gas-oil-render-siroc-turbo.png?itok=2sO52FnU' nameSystemGlobal='Calentador'/>
+
+                    <ElementRound imgSystemGlobal='https://www.quincycompressor.com/wp-content/uploads/2020/12/qv-10-aug-2016-1.png' nameSystemGlobal='Bomba'/>
+
+                    <ElementRound imgSystemGlobal='https://i1.wp.com/www.macrolaser.com.co/wp-content/uploads/2016/02/MR4040.png?fit=910%2C1036' nameSystemGlobal='CNC'/>
 
                 </section>
                 <section className='format'>

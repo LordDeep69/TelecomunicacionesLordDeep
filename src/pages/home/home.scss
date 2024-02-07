@@ -6,14 +6,14 @@
     {
         width: 22%;
         height: 100vh;
-        background-color: aqua;
+        background-color: rgba(0, 0, 0, 0.034);
         position: fixed;
         figure
         {
             display: flex;
             flex-direction: column;
             height: 30%;
-            background-color: aqua;
+            background-color: rgba(0, 0, 0, 0.034);
             position: relative;
             justify-content: center;
             align-items: center;
@@ -34,7 +34,7 @@
         .menu
         {
             height: 70%;
-            background-color: red;
+            background-color: rgba(0, 0, 0, 0.034);
             display: flex;
             flex-direction: column;
             
@@ -64,7 +64,7 @@
 
                 &:hover
                 {
-                    background-color: yellow;
+                    background-color: rgba(230, 229, 229, 0.767);
                 }
                 margin-bottom: 20%;
             }
@@ -77,7 +77,7 @@
         margin-left: 22.5%;
         width: 77.5%;
         height: 100vh;
-        background-color: red;
+        background-color: rgba(0, 0, 0, 0.226);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -85,7 +85,7 @@
         .searchEngine
         {
             height: 13vh;
-            background: green;
+            background-color: rgba(252, 252, 252, 0.801);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -107,7 +107,7 @@
                 {
                     width: 35px;
                     height: 35px;
-                    background-color: aqua;
+                    background-color: rgba(146, 190, 190, 0.151);
                     margin-top: 10px;
                     display: flex;
                     align-items: center;
@@ -127,11 +127,11 @@
         .container
         {
             height: 86.2vh;
-            background-color: black;
+            background-color: rgb(255, 255, 255);
 
             .actionsBoard
             {
-                background-color: yellow;
+                background-color: rgba(235, 223, 223, 0.411);
                 height: 20%;
                 display: flex;
                 justify-content: space-between;
@@ -145,7 +145,7 @@
                     align-self: center;
                     p{
 
-                        background-color: violet;
+                        background-color: rgba(95, 130, 226, 0.836);
                         padding-left: 1vw;
                         padding-right: 1vw;
                         padding-top: 0.75vw;
@@ -160,7 +160,7 @@
                     align-self: center;
                     p{
 
-                        background-color: violet;
+                        background-color: rgba(95, 130, 226, 0.836);
                         padding-left: 1vw;
                         padding-right: 1vw;
                         padding-top: 0.75vw;
@@ -171,7 +171,7 @@
             }
 
             .board {
-                background-color: gray;
+                background-color: rgba(116, 108, 108, 0.13);
                 min-height: 80%;
                 height: max-content;
                 padding: 0.5vw 3vw 0.5vw 3vw;
