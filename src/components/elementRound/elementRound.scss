@@ -22,6 +22,7 @@
     
     figure
     {
+        width: 95px;
         .imgElement
         {
             width: 70px;
@@ -47,11 +48,35 @@
         {
             width: 35px;
             height: 35px;
+
+            &.pending
+            {
+                width: 45px;
+                height: 45px; 
+                color: red;
+            }
+
+            &.offline
+            {
+                color: gray;
+            }
         }
 
         p
         {
             color: rgb(0, 117, 255);
+
+            
+        }
+
+        .pendingStatuP
+        {
+            color: red;
+        }
+
+        .offlineStatuP
+        {
+            color: gray;
         }
         
     }

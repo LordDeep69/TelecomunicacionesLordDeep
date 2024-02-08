@@ -98,7 +98,7 @@
 
 
         .elementsSystem {
-            width: 28vw;
+            width: 31vw;
             height: calc(100vh - 170px);
             align-items: center;
             padding-bottom: 5px;
@@ -195,7 +195,7 @@
 
                     .containerInputs {
 
-                        width: 40%;
+                        width: 45%;
                         height: max-content;
                         padding-top: 0.7vw;
                         padding-bottom: 0.7vw;
@@ -253,3 +253,74 @@
     }
 
 }
+
+
+
+
+
+.containerInputs {
+
+  padding: 1rem;
+  background-color: rgba(185, 208, 212, 0.63);
+  border-radius: 0.2rem;
+  
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.titleInput {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+
+
+.oneInput {
+  
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.required {
+  color: red;
+}
+
+input {
+
+  border: 1px solid #ccc;
+  border-radius: 0.2rem;
+  
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+  border-color: #00a8ff;
+}
+
+// .submit {
+//   width: 100px;
+//   height: 40px;
+//   margin-top: 1rem;
+//   margin-left: auto;
+//   margin-right: auto;
+//   border: none;
+//   border-radius: 0.2rem;
+//   background-color: #00a8ff;
+//   color: white;
+//   font-size: 1rem;
+//   font-weight: bold;
+//   cursor: pointer;
+// }
+
+// .submit:hover {
+//   background-color: #0097e6;
+// }
+
+// .submit:active {
+//   transform: scale(0.95);
+// }

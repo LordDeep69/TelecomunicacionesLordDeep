@@ -4,9 +4,10 @@ import './elementRound.scss'
 interface Props {
   imgSystemGlobal: string
   nameSystemGlobal: string
+  state: string
 }
 
-const ElementRound: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal }) => {
+const ElementRound: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal, state }) => {
   return (
     <article className='element'>
 
@@ -17,8 +18,14 @@ const ElementRound: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal }) =>
         <p className='nameElement'>{nameSystemGlobal}</p>
 
         <figure className='figureStatuElement'>
-            <img className='statuElement' src="https://i.ibb.co/JzRzFNr/image-9-1.png" alt="Estado" />
-            <p>Registrado</p>
+            {state === 'check' && <img className='statuElement' src="https://i.ibb.co/JzRzFNr/image-9-1.png" alt="Estado" />}
+            {state === 'pending' && <img className='statuElement pending' src="https://cdn-icons-png.flaticon.com/512/3756/3756719.png" alt="Estado" />}
+            {state === 'offline' && <img className='statuElement offline' src="https://cdn-icons-png.flaticon.com/512/221/221755.png" alt="Estado" />}
+
+            {state === 'check' && <p className='checkStatuP'>Registrado</p>}
+            {state === 'pending' && <p className='pendingStatuP'>Pendiente</p>}
+            {state === 'offline' && <p className='offlineStatuP'>No Disponible</p>}
+
         </figure>
 
     </article>
