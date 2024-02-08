@@ -13,7 +13,7 @@
         .figureSystemRound {
             position: relative;
             width: 30vw;
-            height: 160px;
+            height: auto;
 
             img {
                 position: absolute;
@@ -27,7 +27,8 @@
 
         .actionsRounds {
             width: 64vw;
-            height: 160px;
+            height: max-content;
+            margin: 1vw;
             background-color: rgba(0, 0, 0, 0.034);
             text-align: center;
             padding-top: 1vw;
