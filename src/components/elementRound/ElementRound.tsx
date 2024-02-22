@@ -1,5 +1,7 @@
 import React from 'react'
 import './elementRound.scss'
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { changeId } from './../../redux/features/stateElementSelected/stateElementSelected.ts'
 
 interface Props {
   imgSystemGlobal: string
@@ -8,8 +10,11 @@ interface Props {
 }
 
 const ElementRound: React.FC<Props> = ({ imgSystemGlobal, nameSystemGlobal, state }) => {
+  const dispatch = useAppDispatch()
+
   return (
-    <article className='element'>
+    <article onClick={() => dispatch(changeId(nameSystemGlobal))}
+    className='element'>
 
         <figure>
             <img className='imgElement' src={imgSystemGlobal} alt="element" />

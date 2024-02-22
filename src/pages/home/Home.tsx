@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './home.scss'
 import EngineSearch from '../../components/engineSearch/EngineSearch'
 import CardSystem from '../../components/cardSystem/CardSystem'
@@ -8,6 +8,7 @@ const Home: React.FC = () => {
     // Manejar la entrada de búsqueda aquí, si es necesario
     console.log('Valor de búsqueda:', value)
   }
+  const [option, setOption] = useState<number>(1)
 
   return (
     <main className="home">
@@ -18,13 +19,13 @@ const Home: React.FC = () => {
         </figure>
         <section className='menu'>
           <h2 className='titleMenu'>Tablero de  <br/>Operaciones</h2>
-          <h2 className='option'>Sistemas</h2>
-          <h2 className='option'>Historial</h2>
-          <h2 className='option'>Reportar Alerta</h2>
-          <h2 className='option'>Ayuda</h2>
+          <h2 onClick={() => { setOption(1) }} className='option'>Sistemas</h2>
+          <h2 onClick={() => { setOption(2) }} className='option'>Historial</h2>
+          <h2 onClick={() => { setOption(3) }} className='option'>Reportar Alerta</h2>
+          <h2 onClick={() => { setOption(4) }} className='option'>Ayuda</h2>
         </section>
       </section>
-      <section className="home__right">
+      {option === 1 && <section className="home__right">
         <section className='searchEngine'>
           <h1 className='titleSelected' >Sistemas</h1>
           {/* Proporcionar la función handleSearchInput como propósito */}
@@ -62,7 +63,20 @@ const Home: React.FC = () => {
 
           </section>
         </section>
-      </section>
+      </section>}
+
+      {option === 2 && <section className="home__right">
+            <b>HISTORIAL</b>
+      </section>}
+
+      {option === 3 && <section className="home__right">
+            <b>REPORTE DE ALERTA</b>
+      </section>}
+
+      {option === 4 && <section className="home__right">
+            <b>AYUDA</b>
+      </section>}
+
     </main>
   )
 }

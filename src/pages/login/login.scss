@@ -56,6 +56,7 @@ $backgroundImage: url('https://i.ibb.co/HGk0H0N/82491eeb-6c99-48d5-9af4-5cac8da0
             background-color: rgba(0, 140, 255, 0.5);
             width: 100%; // Cambiado para ocupar el ancho completo en dispositivos móviles
             display: flex;
+            justify-content: center;
             border-radius: 2vw 0vw 0vw 2vw; // Ajustado para mantener la esquina superior izquierda redondeada
             @media screen and (max-width: 700px) {
               height: 30%;

@@ -82,6 +82,11 @@
                 gap: 1.9vw;
                 font-size: 1.1vw;
 
+                &.roundDataOne, &.roundDataTwo
+                {
+                    gap: max(10px);
+                }
+
                 p
                 {
                     span
