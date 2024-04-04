@@ -198,7 +198,7 @@
 
                     .containerInputs {
 
-                        width: 40%;
+                        width: max-content;
                         height: max-content;
                         padding-top: 0.7vw;
                         padding-bottom: 0.7vw;
@@ -280,12 +280,15 @@
 
 
 .oneInput {
-  
+    display: flex;
+    gap: 50px;
+
 }
 
 label {
   font-size: 1rem;
   margin-bottom: 0.2rem;
+  text-align: justify;
 }
 
 .required {

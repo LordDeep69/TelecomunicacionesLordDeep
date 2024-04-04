@@ -138,7 +138,7 @@ const Rounds: React.FC = () => {
                 {count === 'Motor' && <MotorFormat/>}
                 {count === 'Calentador' && <h2>FORMATO DE Calentador</h2>}
                 {count === 'Bomba' && <h2>FORMATO DE Bomba</h2>}
-                {count === 'CNC' && <h2>FORMATO DE CNC</h2>}
+                {count === 'CNC' && <h2>FORMATO DE CNC BUUUUM</h2>}
 
             </section>
         </main>
