@@ -13,6 +13,8 @@ const Router: React.FC = () => {
                 <Route path= "/app" element={<App/>}/>
                 <Route path= "/home" element={<Home/>}/>
                 <Route path= "/round" element={<Rounds/>}/>
+                <Route path= "/round" element={<Rounds/>}/>
+
             </Routes>
         </BrowserRouter>
   )
