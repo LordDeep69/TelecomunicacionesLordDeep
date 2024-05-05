@@ -313,3 +313,71 @@ export const eliminarSistema = async (sistemaId: number): Promise<void> => {
     throw new Error('Error al eliminar el sistema')
   }
 }
+
+// Función para obtener todas las rondas
+export const obtenerRondas = async (): Promise<Ronda[]> => {
+  try {
+    const response = await fetch('http://localhost:3002/api/rondas')
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error al obtener rondas:', error)
+    throw new Error('Error al obtener rondas')
+  }
+}
+
+// Función para crear una nueva ronda
+export const crearRonda = async (nuevaRonda: Ronda): Promise<void> => {
+  try {
+    const response = await fetch('http://localhost:3002/api/rondas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nuevaRonda)
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al crear la ronda')
+    }
+  } catch (error) {
+    console.error('Error al crear una nueva ronda:', error)
+    throw new Error('Error al crear una nueva ronda')
+  }
+}
+
+// Función para actualizar una ronda existente
+export const actualizarRonda = async (rondaId: string, datosActualizados: Partial<Ronda>): Promise<void> => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/rondas/${rondaId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datosActualizados)
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al actualizar la ronda')
+    }
+  } catch (error) {
+    console.error('Error al actualizar la ronda:', error)
+    throw new Error('Error al actualizar la ronda')
+  }
+}
+
+// Función para eliminar una ronda existente
+export const eliminarRonda = async (rondaId: string): Promise<void> => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/rondas/${rondaId}`, {
+      method: 'DELETE'
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al eliminar la ronda')
+    }
+  } catch (error) {
+    console.error('Error al eliminar la ronda:', error)
+    throw new Error('Error al eliminar la ronda')
+  }
+}

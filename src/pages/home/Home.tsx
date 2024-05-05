@@ -1,197 +1,289 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './home.scss'
 import EngineSearch from '../../components/engineSearch/EngineSearch'
 import CardSystem from '../../components/cardSystem/CardSystem'
-import { actualizarEquipo, actualizarModelo, actualizarUsuario, crearEquipo, crearModelo, crearUsuario, eliminarEquipo, eliminarModelo, eliminarUsuario, obtenerEquipos, obtenerModelos, obtenerSistemas, obtenerUsuarios } from '../../../api'
+// import { actualizarEquipo, actualizarModelo, actualizarRonda, actualizarSistema, actualizarUsuario, crearEquipo, crearModelo, crearRonda, crearSistema, crearUsuario, eliminarEquipo, eliminarModelo, eliminarRonda, eliminarSistema, eliminarUsuario, obtenerEquipos, obtenerModelos, obtenerRondas, obtenerSistemas, obtenerUsuarios } from '../../../api'
 
 const Home: React.FC = () => {
-  const [ejecutado, setEjecutado] = useState(false)
+  // const [ejecutado, setEjecutado] = useState(false)
 
-  useEffect(() => {
-    // Obtener la lista de usuarios al cargar el componente
+  // useEffect(() => {
+  //   // Obtener la lista de usuarios al cargar el componente
 
-    if (!ejecutado) {
-      console.log('Ejecutado una Vez.')
-      obtenerUsuarios()
-        .then(data => {
-          console.log('Estos Sooooooooooooon: ')
-          console.log(data)
-        })
-        .catch(error => {
-          console.error('Error al obtener usuarios:', error)
-        })
+  //   if (!ejecutado) {
+  //     console.log('Ejecutado una Vez.')
+  //     obtenerUsuarios()
+  //       .then(data => {
+  //         console.log('Estos Sooooooooooooon: ')
+  //         console.log(data)
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al obtener usuarios:', error)
+  //       })
 
-      const handleCrearUsuario = async (): Promise<void> => {
-        const nuevoUsuario = {
-          nombre: 'BARDERO',
-          correo: 'PARCA@example.com',
-          tipo_usuario: 'cliente',
-          contrasena: '123456',
-          foto_perfil: 'avatar.jpg'
-        }
+  //     const handleCrearUsuario = async (): Promise<void> => {
+  //       const nuevoUsuario = {
+  //         nombre: 'BARDERO',
+  //         correo: 'PARCA@example.com',
+  //         tipo_usuario: 'cliente',
+  //         contrasena: '123456',
+  //         foto_perfil: 'avatar.jpg'
+  //       }
 
-        try {
-          await crearUsuario(nuevoUsuario)
-          // Después de crear el usuario, volvemos a obtener la lista actualizada de usuarios
-          const usuariosActualizados = await obtenerUsuarios()
-          console.log(usuariosActualizados)
-        } catch (error) {
-          console.error('Error al crear un nuevo usuario:', error)
-        }
-      }
+  //       try {
+  //         await crearUsuario(nuevoUsuario)
+  //         // Después de crear el usuario, volvemos a obtener la lista actualizada de usuarios
+  //         const usuariosActualizados = await obtenerUsuarios()
+  //         console.log(usuariosActualizados)
+  //       } catch (error) {
+  //         console.error('Error al crear un nuevo usuario:', error)
+  //       }
+  //     }
 
-      const handleActualizarUsuario = async (): Promise<void> => {
-        const userId = 8
-        const datosActualizados = {
-          nombre: 'Abus',
-          correo: 'Abus@example.com',
-          tipo_usuario: 'cliente',
-          contrasena: '616616',
-          foto_perfil: 'myPhoto.jpg'
-          // Aquí puedes incluir otros campos que desees actualizar
-        }
+  //     const handleActualizarUsuario = async (): Promise<void> => {
+  //       const userId = 8
+  //       const datosActualizados = {
+  //         nombre: 'Abus',
+  //         correo: 'Abus@example.com',
+  //         tipo_usuario: 'cliente',
+  //         contrasena: '616616',
+  //         foto_perfil: 'myPhoto.jpg'
+  //         // Aquí puedes incluir otros campos que desees actualizar
+  //       }
 
-        try {
-          await actualizarUsuario(userId, datosActualizados)
-          // Después de actualizar el usuario, volvemos a obtener la lista actualizada de usuarios
-          const usuariosActualizados = await obtenerUsuarios()
-          console.log('ACTUALIZADO CON ÉXITO.')
-          console.log(usuariosActualizados)
-        } catch (error) {
-          console.error('Error al actualizar el usuario:', error)
-        }
-      }
+  //       try {
+  //         await actualizarUsuario(userId, datosActualizados)
+  //         // Después de actualizar el usuario, volvemos a obtener la lista actualizada de usuarios
+  //         const usuariosActualizados = await obtenerUsuarios()
+  //         console.log('ACTUALIZADO CON ÉXITO.')
+  //         console.log(usuariosActualizados)
+  //       } catch (error) {
+  //         console.error('Error al actualizar el usuario:', error)
+  //       }
+  //     }
 
-      obtenerModelos()
-        .then(data => {
-          console.log('Modelooooooooooooooooooooooooos')
-          console.log(data)
-          console.log('Modelooooooooooooooooooooooooos')
-        })
-        .catch(error => {
-          console.error('Error al obtener modelos:', error)
-        })
+  //     obtenerModelos()
+  //       .then(data => {
+  //         console.log('Modelooooooooooooooooooooooooos')
+  //         console.log(data)
+  //         console.log('Modelooooooooooooooooooooooooos')
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al obtener modelos:', error)
+  //       })
 
-      const handleEliminarUsuario = async (): Promise<void> => {
-        const userId = 6
-        try {
-          await eliminarUsuario(userId)
-          // Después de eliminar el usuario, volvemos a obtener la lista actualizada de usuarios
-        } catch (error) {
-          console.error('Error al eliminar el usuario:', error)
-        }
-      }
+  //     const handleEliminarUsuario = async (): Promise<void> => {
+  //       const userId = 6
+  //       try {
+  //         await eliminarUsuario(userId)
+  //         // Después de eliminar el usuario, volvemos a obtener la lista actualizada de usuarios
+  //       } catch (error) {
+  //         console.error('Error al eliminar el usuario:', error)
+  //       }
+  //     }
 
-      const handleCrearModelo = async (): Promise<void> => {
-        const nuevoModelo = {
-          nombre: 'GEMINIS',
-          imagen: 'GEMINIS.jpg'
-        }
+  //     const handleCrearModelo = async (): Promise<void> => {
+  //       const nuevoModelo = {
+  //         nombre: 'GEMINIS',
+  //         imagen: 'GEMINIS.jpg'
+  //       }
 
-        try {
-          await crearModelo(nuevoModelo)
-          console.log('CREADO MODELO.')
-        } catch (error) {
-          console.error('Error al crear un nuevo modelo:', error)
-        }
-      }
+  //       try {
+  //         await crearModelo(nuevoModelo)
+  //         console.log('CREADO MODELO.')
+  //       } catch (error) {
+  //         console.error('Error al crear un nuevo modelo:', error)
+  //       }
+  //     }
 
-      const handleEliminarModelo = async (): Promise<void> => {
-        const modeloId = 5
-        try {
-          await eliminarModelo(modeloId)
-        } catch (error) {
-          console.error('Error al eliminar el modelo:', error)
-        }
-      }
+  //     const handleEliminarModelo = async (): Promise<void> => {
+  //       const modeloId = 5
+  //       try {
+  //         await eliminarModelo(modeloId)
+  //       } catch (error) {
+  //         console.error('Error al eliminar el modelo:', error)
+  //       }
+  //     }
 
-      const handleActualizarModelo = async (): Promise<void> => {
-        const modeloId = 8
-        const datosActualizados = {
-          nombre: 'TRUNKS',
-          imagen: 'TRUNKS.JPG'
-        }
-        try {
-          await actualizarModelo(modeloId, datosActualizados)
-        } catch (error) {
-          console.error('Error al actualizar el modelo:', error)
-        }
-      }
+  //     const handleActualizarModelo = async (): Promise<void> => {
+  //       const modeloId = 8
+  //       const datosActualizados = {
+  //         nombre: 'TRUNKS',
+  //         imagen: 'TRUNKS.JPG'
+  //       }
+  //       try {
+  //         await actualizarModelo(modeloId, datosActualizados)
+  //       } catch (error) {
+  //         console.error('Error al actualizar el modelo:', error)
+  //       }
+  //     }
 
-      obtenerEquipos()
-        .then(data => {
-          console.log('Equipos obtenidos:', data)
-        })
-        .catch(error => {
-          console.error('Error al obtener equipos:', error)
-        })
+  //     obtenerEquipos()
+  //       .then(data => {
+  //         console.log('Equipos obtenidos:', data)
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al obtener equipos:', error)
+  //       })
 
-      obtenerSistemas()
-        .then(data => {
-          console.log('Equipos obtenidos:', data)
-        })
-        .catch(error => {
-          console.error('Error al obtener equipos:', error)
-        })
+  //     obtenerSistemas()
+  //       .then(data => {
+  //         console.log('SISTEMAAAAAAAAAAAAAAAAAAAS obtenidos:', data)
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al obtener equipos:', error)
+  //       })
 
-      const handleCrearEquipo = async (): Promise<void> => {
-        const nuevoEquipo = {
-          id_sistema: 1,
-          nombre_equipo: 'DEATH',
-          imagen_equipo: 'imagen_PARCA.jpg',
-          id_equipo: 'equipo1236964',
-          id_modelo: 1
-        }
+  //     obtenerRondas()
+  //       .then(data => {
+  //         console.log('ROOOOOOOOOOOONDAAAAAAAAAAAAAAAAS:', data)
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al obtener equipos:', error)
+  //       })
 
-        try {
-          await crearEquipo(nuevoEquipo)
-          console.log('Equipo creado con éxito.')
-        } catch (error) {
-          console.error('Error al crear un nuevo equipo:', error)
-        }
-      }
+  //     const handleCrearEquipo = async (): Promise<void> => {
+  //       const nuevoEquipo = {
+  //         id_sistema: 1,
+  //         nombre_equipo: 'DEATH',
+  //         imagen_equipo: 'imagen_PARCA.jpg',
+  //         id_equipo: 'equipo1236964',
+  //         id_modelo: 1
+  //       }
 
-      const handleActualizarEquipo = async (): Promise<void> => {
-        const equipoId = 13
-        const datosActualizados = {
-          id_sistema: 1,
-          nombre_equipo: 'REFRIGERADOR',
-          imagen_equipo: 'REFRIGERADOR.jpg',
-          id_equipo: 'kjhbskdhb',
-          id_modelo: 2
+  //       try {
+  //         await crearEquipo(nuevoEquipo)
+  //         console.log('Equipo creado con éxito.')
+  //       } catch (error) {
+  //         console.error('Error al crear un nuevo equipo:', error)
+  //       }
+  //     }
 
-          // Aquí puedes incluir otros campos que desees actualizar
-        }
+  //     const handleActualizarEquipo = async (): Promise<void> => {
+  //       const equipoId = 13
+  //       const datosActualizados = {
+  //         id_sistema: 1,
+  //         nombre_equipo: 'REFRIGERADOR',
+  //         imagen_equipo: 'REFRIGERADOR.jpg',
+  //         id_equipo: 'kjhbskdhb',
+  //         id_modelo: 2
 
-        try {
-          await actualizarEquipo(equipoId, datosActualizados)
-          console.log('Equipo actualizado con éxito.')
-        } catch (error) {
-          console.error('Error al actualizar el equipo:', error)
-        }
-      }
+  //         // Aquí puedes incluir otros campos que desees actualizar
+  //       }
 
-      const handleEliminarEquipo = async (): Promise<void> => {
-        const equipoId = 17
-        try {
-          await eliminarEquipo(equipoId)
-          console.log('Equipo eliminado con éxito.')
-        } catch (error) {
-          console.error('Error al eliminar el equipo:', error)
-        }
-      }
+  //       try {
+  //         await actualizarEquipo(equipoId, datosActualizados)
+  //         console.log('Equipo actualizado con éxito.')
+  //       } catch (error) {
+  //         console.error('Error al actualizar el equipo:', error)
+  //       }
+  //     }
 
-      handleEliminarEquipo()
-        .then(data => {
-          console.log('equipooooooooo eliminADO: ')
-          console.log(data)
-        })
-        .catch(error => {
-          console.error('Error al Eliminar usuario:', error)
-        })
-      setEjecutado(!ejecutado)
-    }
-  }, [ejecutado])
+  //     const handleEliminarEquipo = async (): Promise<void> => {
+  //       const equipoId = 17
+  //       try {
+  //         await eliminarEquipo(equipoId)
+  //         console.log('Equipo eliminado con éxito.')
+  //       } catch (error) {
+  //         console.error('Error al eliminar el equipo:', error)
+  //       }
+  //     }
+
+  //     const crearNuevoSistema = async (): Promise<void> => {
+  //       const nuevoSistema = {
+  //         id_usuario: 1, // ID del usuario al que pertenece el sistema
+  //         nombre_sistema: 'TITANIC',
+  //         imagen_sistema: 'DEATHDOWN.JPG',
+  //         id_sistema: '6923'
+  //       }
+
+  //       try {
+  //         await crearSistema(nuevoSistema)
+  //         console.log('Nuevo sistema creado exitosamente.')
+  //       } catch (error) {
+  //         console.error('Error al crear un nuevo sistema:', error)
+  //       }
+  //     }
+
+  //     // Función asincrónica para actualizar un sistema existente
+  //     const actualizarSistemaExistente = async (): Promise<void> => {
+  //       const sistemaActualizado = {
+  //         id_usuario: 3, // Nuevo ID de usuario
+  //         nombre_sistema: 'Sistema Actualizado',
+  //         imagen_sistema: 'URL de la nueva imagen del sistema',
+  //         id_sistema: 'id_sistema_a_actualizar'
+  //       }
+
+  //       try {
+  //         await actualizarSistema(3, sistemaActualizado)
+  //         console.log('Sistema actualizado exitosamente.')
+  //       } catch (error) {
+  //         console.error('Error al actualizar el sistema:', error)
+  //       }
+  //     }
+
+  //     const eliminarSistemaExistente = async (): Promise<void> => {
+  //       const idSistemaAEliminar = 14
+
+  //       try {
+  //         await eliminarSistema(idSistemaAEliminar)
+  //         console.log('Sistema eliminado exitosamente.')
+  //       } catch (error) {
+  //         console.error('Error al eliminar el sistema:', error)
+  //       }
+  //     }
+
+  //     // Función para crear una nueva ronda
+  //     const handleCrearRonda = async (): Promise<void> => {
+  //       const nuevaRonda = {
+  //         id: '6169',
+  //         id_sistema: 1,
+  //         fecha: new Date().toISOString().slice(0, 19).replace('T', ' ')
+  //       }
+  //       try {
+  //         await crearRonda(nuevaRonda)
+  //       } catch (error) {
+  //         console.error('Error al crear una nueva ronda:', error)
+  //       }
+  //     }
+
+  //     // Función para actualizar una ronda existente
+  //     const handleActualizarRonda = async (): Promise<void> => {
+  //       const rondaId = '2b3d9ca1-0a98-11ef-ab0b-cecd02c24f20'
+  //       const datosActualizados = {
+  //         id: '61669',
+  //         id_sistema: 2,
+  //         fecha: new Date().toISOString().slice(0, 19).replace('T', ' ')
+
+  //       }
+  //       try {
+  //         await actualizarRonda(rondaId, datosActualizados)
+  //       } catch (error) {
+  //         console.error('Error al actualizar la ronda:', error)
+  //       }
+  //     }
+
+  //     // Función para eliminar una ronda existente
+  //     const handleEliminarRonda = async (): Promise<void> => {
+  //       const rondaId = '2b3d9ca1-0a98-11ef-ab0b-cecd02c24f20'
+  //       try {
+  //         await eliminarRonda(rondaId)
+  //       } catch (error) {
+  //         console.error('Error al eliminar la ronda:', error)
+  //       }
+  //     }
+
+  //     handleEliminarRonda()
+  //       .then(data => {
+  //         console.log('ELIMINADOOOO: ')
+  //         console.log(data)
+  //       })
+  //       .catch(error => {
+  //         console.error('Error al Eliminar usuario:', error)
+  //       })
+  //     setEjecutado(!ejecutado)
+  //   }
+  // }, [ejecutado])
   const handleSearchInput = (value: string): void => {
     // Manejar la entrada de búsqueda aquí, si es necesario
     console.log('Valor de búsqueda:', value)
