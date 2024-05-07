@@ -30,7 +30,7 @@ interface FormData {
 
 const Rounds: React.FC = () => {
   // Crea una instancia de useForm con el tipo de los datos
-  const { register } = useForm<FormData>()
+//   const { register } = useForm<FormData>()
 
   // The `state` arg is correctly typed as `RootState` already
   const count = useAppSelector((state) => state.idElemetSelecte.id)
@@ -138,7 +138,7 @@ const Rounds: React.FC = () => {
                 {count === 'Motor' && <MotorFormat/>}
                 {count === 'Calentador' && <h2>FORMATO DE Calentador</h2>}
                 {count === 'Bomba' && <h2>FORMATO DE Bomba</h2>}
-                {count === 'CNC' && <h2>FORMATO DE CNC BUUUUM</h2>}
+                {count === 'CNC' && <h2>FORMATO DE CNC</h2>}
 
             </section>
         </main>

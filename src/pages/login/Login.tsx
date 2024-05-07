@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import './login.scss'
 import { useForm } from 'react-hook-form'
 import { useAppDispatch } from '../../hooks/reduxHooks' // Asegúrate de importar correctamente el hook
@@ -458,94 +457,94 @@ const Login: React.FC = () => {
   //   // updateRonda('ronda1_uuid').catch(error => { console.error('Error al actualizar la ronda:', error) })
   // }, [])
 
-  useEffect(() => {
-    const deleteSistema = async (): Promise<void> => {
-      const id = 8 // ID del sistema a eliminar
+  // useEffect(() => {
+  //   const deleteSistema = async (): Promise<void> => {
+  //     const id = 8 // ID del sistema a eliminar
 
-      try {
-        // Petición GET para obtener todas las rondas
-        const responseRondas = await fetch('http://localhost:3002/api/rondas')
-        const rondasData = await responseRondas.json()
+  //     try {
+  //       // Petición GET para obtener todas las rondas
+  //       const responseRondas = await fetch('http://localhost:3002/api/rondas')
+  //       const rondasData = await responseRondas.json()
 
-        // Filtrar las rondas relacionadas con el sistema a eliminar
-        const rondasToDelete = rondasData.filter((ronda: any) => ronda.id_sistema === id)
+  //       // Filtrar las rondas relacionadas con el sistema a eliminar
+  //       const rondasToDelete = rondasData.filter((ronda: any) => ronda.id_sistema === id)
 
-        // Recorrer las rondas filtradas y ejecutar una petición DELETE para cada una
-        await Promise.all(rondasToDelete.map(async (ronda: any) => {
-          try {
-            await fetch(`http://localhost:3002/api/rondas/${ronda.id}`, {
-              method: 'DELETE'
-            })
-            console.log(`Ronda ${ronda.id} eliminada.`)
-          } catch (error) {
-            console.error(`Error al eliminar la ronda ${ronda.id}:`, error)
-          }
-        }))
+  //       // Recorrer las rondas filtradas y ejecutar una petición DELETE para cada una
+  //       await Promise.all(rondasToDelete.map(async (ronda: any) => {
+  //         try {
+  //           await fetch(`http://localhost:3002/api/rondas/${ronda.id}`, {
+  //             method: 'DELETE'
+  //           })
+  //           console.log(`Ronda ${ronda.id} eliminada.`)
+  //         } catch (error) {
+  //           console.error(`Error al eliminar la ronda ${ronda.id}:`, error)
+  //         }
+  //       }))
 
-        // Después de eliminar las rondas relacionadas, proceder a eliminar el sistema
-        const response = await fetch(`http://localhost:3002/api/sistemas/${id}`, {
-          method: 'DELETE'
-        })
+  //       // Después de eliminar las rondas relacionadas, proceder a eliminar el sistema
+  //       const response = await fetch(`http://localhost:3002/api/sistemas/${id}`, {
+  //         method: 'DELETE'
+  //       })
 
-        const data = await response.json()
-        console.log(data)
-      } catch (error) {
-        console.error('Error al eliminar el sistema:', error)
-      }
-    }
+  //       const data = await response.json()
+  //       console.log(data)
+  //     } catch (error) {
+  //       console.error('Error al eliminar el sistema:', error)
+  //     }
+  //   }
 
-    const deleteModelo = async (): Promise<void> => {
-      const id = 4 // ID del modelo a eliminar
+  //   const deleteModelo = async (): Promise<void> => {
+  //     const id = 4 // ID del modelo a eliminar
 
-      try {
-        const response = await fetch(`http://localhost:3002/api/modelos/${id}`, {
-          method: 'DELETE'
-        })
+  //     try {
+  //       const response = await fetch(`http://localhost:3002/api/modelos/${id}`, {
+  //         method: 'DELETE'
+  //       })
 
-        const data = await response.json()
-        console.log(data)
-      } catch (error) {
-        console.error('Error al eliminar el modelo:', error)
-      }
-    }
+  //       const data = await response.json()
+  //       console.log(data)
+  //     } catch (error) {
+  //       console.error('Error al eliminar el modelo:', error)
+  //     }
+  //   }
 
-    const deleteEquipo = async (): Promise<void> => {
-      const id = 7 // ID del equipo a eliminar
+  //   const deleteEquipo = async (): Promise<void> => {
+  //     const id = 7 // ID del equipo a eliminar
 
-      try {
-        const response = await fetch(`http://localhost:3002/api/equipos/${id}`, {
-          method: 'DELETE'
-        })
+  //     try {
+  //       const response = await fetch(`http://localhost:3002/api/equipos/${id}`, {
+  //         method: 'DELETE'
+  //       })
 
-        const data = await response.json()
-        console.log(data)
-      } catch (error) {
-        console.error('Error al eliminar el equipo:', error)
-      }
-    }
+  //       const data = await response.json()
+  //       console.log(data)
+  //     } catch (error) {
+  //       console.error('Error al eliminar el equipo:', error)
+  //     }
+  //   }
 
-    const deleteRonda = async (): Promise<void> => {
-      const id = 'ronda3_uuid' // ID de la ronda a eliminar
+  //   const deleteRonda = async (): Promise<void> => {
+  //     const id = 'ronda3_uuid' // ID de la ronda a eliminar
 
-      try {
-        const response = await fetch(`http://localhost:3002/api/rondas/${id}`, {
-          method: 'DELETE'
-        })
+  //     try {
+  //       const response = await fetch(`http://localhost:3002/api/rondas/${id}`, {
+  //         method: 'DELETE'
+  //       })
 
-        const data = await response.json()
-        console.log(data)
-      } catch (error) {
-        console.error('Error al eliminar la ronda:', error)
-      }
-    }
+  //       const data = await response.json()
+  //       console.log(data)
+  //     } catch (error) {
+  //       console.error('Error al eliminar la ronda:', error)
+  //     }
+  //   }
 
-    // Llamadas a las funciones de eliminación al cargar la página
-    deleteSistema().catch(error => { console.error('Error al eliminar el sistema:', error) })
-    // deleteRonda().catch(error => { console.error('Error al eliminar la Ronda:', error) })
-    // deleteModelo().catch(error => { console.error('Error al eliminar el modelo:', error) })
-    // deleteEquipo().catch(error => { console.error('Error al eliminar el equipo:', error) })
-    // deleteRonda().catch(error => { console.error('Error al eliminar la ronda:', error) })
-  }, [])
+  //   // Llamadas a las funciones de eliminación al cargar la página
+  //   deleteSistema().catch(error => { console.error('Error al eliminar el sistema:', error) })
+  //   // deleteRonda().catch(error => { console.error('Error al eliminar la Ronda:', error) })
+  //   // deleteModelo().catch(error => { console.error('Error al eliminar el modelo:', error) })
+  //   // deleteEquipo().catch(error => { console.error('Error al eliminar el equipo:', error) })
+  //   // deleteRonda().catch(error => { console.error('Error al eliminar la ronda:', error) })
+  // }, [])
 
   const validUsers: ValidUser[] = [
     { email: 'lordDeep@utb.edu.co', password: '12345' },

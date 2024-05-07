@@ -381,3 +381,143 @@ export const eliminarRonda = async (rondaId: string): Promise<void> => {
     throw new Error('Error al eliminar la ronda')
   }
 }
+
+// Tipo de dato para la tabla Motor_09
+export interface Motor09 {
+  id?: number
+  id_sistema: number
+  id_equipo: number
+  id_ronda: string
+  fecha: string
+  temp_admision: number
+  temp_refrigerante: number
+  presion_barometrica: number
+  altitud: number
+  temp_agua_bruta: number
+  rpm_nominal: number
+  margen_vel_helice: number
+  margen_vel_disposicion: number
+  vel_media_piston: number
+  potencia_iso_3046: number
+  presion_media_efectiva: number
+  mapa_prestaciones: string
+  mapa_desempeno: string
+  depresion_admision_filtro_nuevo: number
+  depresion_admision_max: number
+  contrapresion_escape: number
+  contrapresion_escape_max: number
+  contrapresion_escape_estatica: number
+  temp_combustible_conexion: number
+  temp_combustible_conexion_max: number
+  temp_combustible_intercambiador: number
+  consumo_especifico_combustible_fsp: number
+  consumo_especifico_combustible: number
+  consumo_especifico_combustible_optimo: number
+  consumo_especifico_combustible_cruise: number
+  consumo_combustible_ralenti: number
+  consumo_aceite_100h: number
+  presion_sobrealimentacion_abs: number
+  caudal_volumetrico_aire_combustion: number
+  caudal_volumetrico_escape: number
+  temp_escape_turbocompresor: number
+  temp_escape_turbocompresor_max: number
+  temp_escape_motor: number
+  temp_escape_motor_max: number
+  calor_refrigerante_calor_aceite: number
+  disipacion_calor_refrigerante_aceite_calefaccion: number
+  calor_refrigerante_calor_aceite_sin_calefaccion: number
+  calor_refrigerante_sin_calefaccion: number
+  calor_aceite: number
+  disipacion_calor_aire_aceite: number
+  calor_remanente_combustible_retorno: number
+  calor_radiacion_conveccion_motor: number
+  calor_radiacion_conveccion_motor_temperatura: number
+  dif_temp_refrigerante: number
+  temp_funcionamiento_refrigerante_desde: number
+  temp_funcionamiento_refrigerante_hasta: number
+  temp_refrigerante_despues_motor_limite1: number
+  temp_refrigerante_despues_motor_limite2: number
+  temp_refrigerante_despues_equipo_enfriamiento: number
+  temp_refrigerante_despues_equipo_enfriamiento_max: number
+  contenido_anticongelante_max: number
+  bomba_refrigerante_caudal: number
+  bomba_refrigerante_caudal_5p: number
+  equipo_refrigeracion_caudal: number
+  bomba_refrigerante_dif_presion: number
+  bomba_refrigerante_dif_presion_min: number
+  bomba_refrigerante_dif_presion_max: number
+  bomba_refrigerante_dif_presion_con_equipo: number
+  bomba_refrigerante_dif_presion_sin_equipo: number
+}
+
+// Función para crear un nuevo registro en la tabla Motor_09
+export const crearRegistroMotor09 = async (nuevoRegistro: Motor09): Promise<void> => {
+  try {
+    const response = await fetch('http://localhost:3002/api/motor_09', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nuevoRegistro)
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al crear un nuevo registro en Motor_09')
+    }
+  } catch (error) {
+    console.error('Error al crear un nuevo registro en Motor_09:', error)
+    throw new Error('Error al crear un nuevo registro en Motor_09')
+  }
+}
+
+// Obtener todos los registros de la tabla Motor_09
+export const obtenerRegistrosMotor09 = async (): Promise<Motor09[]> => {
+  try {
+    const response = await fetch('http://localhost:3002/api/motor_09')
+    if (!response.ok) {
+      throw new Error('Error al obtener registros de Motor_09')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error al obtener registros de Motor_09:', error)
+    throw new Error('Error al obtener registros de Motor_09')
+  }
+}
+
+// Actualizar un registro existente en la tabla Motor_09
+// Función para actualizar un registro existente en la tabla Motor_09
+export const actualizarRegistroMotor09 = async (id: number, motorData: Partial<Motor09>): Promise<void> => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/motor_09/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(motorData)
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al actualizar el registro en Motor_09')
+    }
+  } catch (error) {
+    console.error('Error al actualizar el registro en Motor_09:', error)
+    throw new Error('Error al actualizar el registro en Motor_09')
+  }
+}
+
+// Eliminar un registro de la tabla Motor_09 por su ID
+export const eliminarRegistroMotor09 = async (id: number): Promise<void> => {
+  try {
+    const response = await fetch(`http://localhost:3002/api/motor_09/${id}`, {
+      method: 'DELETE'
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al eliminar el registro en Motor_09')
+    }
+  } catch (error) {
+    console.error('Error al eliminar el registro en Motor_09:', error)
+    throw new Error('Error al eliminar el registro en Motor_09')
+  }
+}

@@ -354,4 +354,94 @@ router.delete('/rondas/:id', (req, res) => {
     });
 });
 
+// users.cjs
+// users.cjs
+
+// Ruta para crear una nueva tabla
+
+
+// users.cjs
+
+// Ruta para crear una nueva tabla
+
+
+
+
+
+// Ruta para crear una nueva tabla
+// Ruta para crear una nueva tabla
+
+
+// Obtener todos los registros de la tabla Motor_09
+router.get('/motor_09', (req, res) => {
+    const query = 'SELECT * FROM Motor_09';
+    db.query(query, (error, results) => {
+        if (error) {
+            console.error('Error al obtener registros de Motor_09:', error);
+            res.status(500).json({ error: 'Error al obtener registros de Motor_09' });
+        } else {
+            res.status(200).json(results);
+        }
+    });
+});
+
+// Crear un nuevo registro en la tabla Motor_09
+router.post('/motor_09', (req, res) => {
+    const motorData = req.body;
+    const query = 'INSERT INTO Motor_09 SET ?';
+    db.query(query, motorData, (error, result) => {
+        if (error) {
+            console.error('Error al crear un nuevo registro en Motor_09:', error);
+            res.status(500).json({ error: 'Error al crear un nuevo registro en Motor_09' });
+        } else {
+            res.status(201).json({ message: 'Registro creado exitosamente en Motor_09' });
+        }
+    });
+});
+
+// Actualizar un registro existente en la tabla Motor_09
+router.put('/motor_09/:id', (req, res) => {
+    const motorId = req.params.id;
+    const motorData = req.body;
+    const query = 'UPDATE Motor_09 SET ? WHERE id = ?';
+    db.query(query, [motorData, motorId], (error, results) => {
+        if (error) {
+            console.error('Error al actualizar el registro en Motor_09:', error);
+            res.status(500).json({ error: 'Error al actualizar el registro en Motor_09' });
+        } else {
+            if (results.affectedRows > 0) {
+                res.status(200).json({ message: 'Registro actualizado exitosamente en Motor_09' });
+            } else {
+                res.status(404).json({ message: 'Registro no encontrado en Motor_09' });
+            }
+        }
+    });
+});
+
+// Eliminar un registro de la tabla Motor_09 por su ID
+router.delete('/motor_09/:id', (req, res) => {
+    const motorId = req.params.id;
+    const query = 'DELETE FROM Motor_09 WHERE id = ?';
+    db.query(query, [motorId], (error, results) => {
+        if (error) {
+            console.error('Error al eliminar el registro en Motor_09:', error);
+            res.status(500).json({ error: 'Error al eliminar el registro en Motor_09' });
+        } else {
+            if (results.affectedRows > 0) {
+                res.status(200).json({ message: 'Registro eliminado exitosamente en Motor_09' });
+            } else {
+                res.status(404).json({ message: 'Registro no encontrado en Motor_09' });
+            }
+        }
+    });
+});
+
+
+
+// Controlador para eliminar un motor existente de la tabla Motor_
+
+
+
+
 module.exports = router;
+
