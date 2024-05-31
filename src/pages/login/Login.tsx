@@ -62,8 +62,8 @@ const Login: React.FC = () => {
       <section className='form'>
         <section className='form__left'>
           <figure className='logoLogin'>
-            <img className='imgLogin' src='https://i.ibb.co/NjFfFCZ/RONDAS-LOGO.png' alt="Logo" />
-            <h2>Rondas</h2>
+            <img className='imgLogin' src='https://i.ibb.co/ypPVb7H/image-removebg-preview.png' alt="Logo" />
+            <h2>Telecomunicaciones</h2>
           </figure>
         </section>
 
