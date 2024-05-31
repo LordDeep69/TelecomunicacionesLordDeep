@@ -1,36 +1,49 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useAppDispatch } from '../../hooks/reduxHooks'
-import { setUserLogged } from '../../redux/features/userLogged/userLoggedSlice'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
-import { obtenerUsuarios } from '../../../api' // Asegúrate de que la ruta sea correcta
-import { type Usuario } from '../.././utilities'
+import { getClientes } from '../../api/api' // Importar la función para obtener clientes desde la API
 import './login.scss'
 
+// Definición de la interfaz para los datos del formulario
 interface FormData {
   email: string
   password: string
 }
 
+// Definición de la interfaz para los datos del cliente
+interface Cliente {
+  nombre: string
+  apellido: string
+  direccion: string
+  telefono: string
+  correo: string
+  contrasena: string
+  foto: string
+  fecha_registro: string
+}
+
 const Login: React.FC = () => {
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm<FormData>()
-  const dispatch = useAppDispatch()
 
   // Función para manejar el inicio de sesión
   const handleLogin = async (data: FormData): Promise<void> => {
     try {
-      // Obtener todos los usuarios de la base de datos
-      const usuarios = await obtenerUsuarios()
-      // Buscar si existe un usuario con el correo y contraseña proporcionados
-      const usuarioValido = usuarios.find((usuario: Usuario) => usuario.correo === data.email && usuario.contrasena === data.password)
+      // Obtener todos los clientes de la base de datos utilizando la API
+      const clientes = await getClientes()
 
-      if (usuarioValido !== undefined) {
+      // Buscar si existe un cliente con el correo y contraseña proporcionados
+      const clienteValido = clientes.find((cliente: Cliente) => cliente.correo === data.email && cliente.contrasena === data.password)
+
+      if (clienteValido !== undefined) {
         // Usuario válido, muestra un mensaje de bienvenida
-        await Swal.fire('¡Bienvenido!', `Hola, ${usuarioValido.nombre}!`, 'success')
-        // Despacha la acción setUserLogged con los datos del usuario
-        dispatch(setUserLogged({ email: usuarioValido.correo, password: data.password }))
+        await Swal.fire('¡Bienvenido!', `Hola, ${clienteValido.nombre}!`, 'success')
+
+        // Guardar los datos del usuario en el sessionStorage
+        sessionStorage.setItem('user', JSON.stringify(clienteValido))
+
+        // Navegar a la página de inicio
         navigate('/home')
       } else {
         // Credenciales inválidas, muestra un mensaje de error

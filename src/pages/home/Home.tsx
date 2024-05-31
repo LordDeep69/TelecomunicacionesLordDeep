@@ -1,97 +1,253 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import './home.scss'
-import EngineSearch from '../../components/engineSearch/EngineSearch'
-import CardSystem from '../../components/cardSystem/CardSystem'
-import { selectSistemas } from '../../redux/features/sistemasSlice' // Asegúrate de que la ruta sea correcta
-import { type Sistema } from '../../utilities'
+import React, { useState, useEffect, ChangeEvent } from 'react'
+import { AppBar, Toolbar, Typography, Drawer, List, ListItem, ListItemText, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Button, Box, Container, TextField } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
+import { getClientes, getCuentas, getFacturas, getPagos, getPlanes, getServicios, getDispositivos, getEmpleados, getNotificaciones, getTickets, getRegistrosUsoServicios, createCliente, updateCliente, deleteCliente } from '../../api/api' // Importa tus funciones de API
+
+type DataType = Record<string, unknown>
 
 const Home: React.FC = () => {
-  const [searchInput, setSearchInput] = useState('')
-  const sistemas = useSelector(selectSistemas) // Obtiene los sistemas del estado global
-  const [filteredSistemas, setFilteredSistemas] = useState(sistemas)
+  const [selectedEntity, setSelectedEntity] = useState<string>('clientes')
+  const [data, setData] = useState<DataType[]>([])
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
+  const [editingRow, setEditingRow] = useState<number | null>(null)
+  const [newRow, setNewRow] = useState<DataType | null>(null)
 
-  // Actualiza los sistemas filtrados cuando cambia el input de búsqueda o la lista de sistemas
   useEffect(() => {
-    if (searchInput !== '') {
-      // Caso 2: Filtra los sistemas que contienen la cadena de caracteres del input
-      setFilteredSistemas(sistemas.filter((sistema: Sistema) => sistema.nombre_sistema.includes(searchInput)))
-    } else {
-      // Caso 1: Muestra todos los sistemas asociados al usuario
-      setFilteredSistemas(sistemas)
+    const fetchData = async (): Promise<void> => {
+      await handleEntityClick(selectedEntity)
     }
-  }, [searchInput, sistemas])
+    void fetchData()
+  }, [selectedEntity])
 
-  const handleSearchInput = (value: string): void => {
-    setSearchInput(value) // Actualiza el estado local con el valor del input de búsqueda
+  const handleEntityClick = async (entity: string): Promise<void> => {
+    setSelectedEntity(entity)
+    let fetchData: DataType[] = []
+    try {
+      switch (entity) {
+        case 'clientes':
+          fetchData = await getClientes()
+          break
+        case 'cuentas':
+          fetchData = await getCuentas()
+          break
+        case 'facturas':
+          fetchData = await getFacturas()
+          break
+        case 'pagos':
+          fetchData = await getPagos()
+          break
+        case 'planes':
+          fetchData = await getPlanes()
+          break
+        case 'servicios':
+          fetchData = await getServicios()
+          break
+        case 'dispositivos':
+          fetchData = await getDispositivos()
+          break
+        case 'empleados':
+          fetchData = await getEmpleados()
+          break
+        case 'notificaciones':
+          fetchData = await getNotificaciones()
+          break
+        case 'tickets':
+          fetchData = await getTickets()
+          break
+        case 'registros-uso-servicios':
+          fetchData = await getRegistrosUsoServicios()
+          break
+        default:
+          fetchData = []
+      }
+    } catch (error) {
+      console.error(`Error fetching data for ${entity}:`, error)
+    }
+    setData(fetchData)
   }
 
-  const [option, setOption] = useState<number>(1)
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, key: string, index: number) => {
+    const updatedData = [...data]
+    updatedData[index] = { ...updatedData[index], [key]: e.target.value }
+    setData(updatedData)
+  }
+
+  const handleNewRowChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, key: string) => {
+    if (newRow) {
+      setNewRow({ ...newRow, [key]: e.target.value })
+    } else {
+      setNewRow({ [key]: e.target.value })
+    }
+  }
+
+  const handleEdit = (index: number) => {
+    setEditingRow(index)
+  }
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteCliente(id)
+      setData(data.filter(item => item.id !== id))
+    } catch (error) {
+      console.error(`Error deleting data for id ${id}:`, error)
+    }
+  }
+
+  const handleSave = async (index: number) => {
+    const updatedRow = data[index]
+    try {
+      await updateCliente(updatedRow.id, updatedRow)
+      setEditingRow(null)
+    } catch (error) {
+      console.error(`Error updating data for id ${updatedRow.id}:`, error)
+    }
+  }
+
+  const handleAddNew = async () => {
+    if (newRow) {
+      try {
+        const addedRow = await createCliente(newRow)
+        setData([...data, addedRow])
+        setNewRow(null)
+      } catch (error) {
+        console.error('Error creating new data:', error)
+      }
+    }
+  }
 
   return (
-    <main className="home">
-      <section className="home__left">
-        <figure>
-          <img src="https://i.ibb.co/NjFfFCZ/RONDAS-LOGO.png" alt="Logo App" />
-          <h2>Rondas</h2>
-        </figure>
-        <section className='menu'>
-          <h2 className='titleMenu'>Tablero de  <br/>Operaciones</h2>
-          <h2 onClick={() => { setOption(1) }} className='option'>Sistemas</h2>
-          <h2 onClick={() => { setOption(2) }} className='option'>Historial</h2>
-          <h2 onClick={() => { setOption(3) }} className='option'>Reportar Alerta</h2>
-          <h2 onClick={() => { setOption(4) }} className='option'>Ayuda</h2>
-        </section>
-      </section>
-      {option === 1 && <section className="home__right">
-        <section className='searchEngine'>
-          <h1 className='titleSelected' >Sistemas</h1>
-          {/* Proporcionar la función handleSearchInput como propósito */}
-          <section className='mySearch'>
-
-            <figure className='figureFilter'>
-              <img src="https://i.ibb.co/M6pXjrd/image-2.png" alt="filter" />
-            </figure>
-            <EngineSearch getInput={handleSearchInput} />
-
-          </section>
-        </section>
-        <section className='container'>
-          <section className='actionsBoard'>
-            <span className='addSystem'>
-                <p>Agregar <br/>Sistema</p>
-            </span>
-
-            <span className='classystem'>
-                <p>Tipo Guerra</p>
-            </span>
-
-          </section>
-          <section className='board'>            {filteredSistemas.map((sistema: Sistema) => (
-              <CardSystem
-                key={sistema.id}
-                imgSystemGlobal={sistema.imagen_sistema}
-                nameSystemGlobal={sistema.nombre_sistema}
-              />
+    <Box sx={{ display: 'flex' }}>
+      <AppBar position="fixed">
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => { setDrawerOpen(true) }}>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            Telecomunicaciones
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Drawer open={drawerOpen} onClose={() => { setDrawerOpen(false) }}>
+        <List>
+          {['clientes', 'cuentas', 'facturas', 'pagos', 'planes', 'servicios', 'dispositivos', 'empleados', 'notificaciones', 'tickets', 'registros-uso-servicios'].map((entity) => (
+            <ListItem button key={entity} onClick={async () => { await handleEntityClick(entity) }}>
+              <ListItemText primary={entity.charAt(0).toUpperCase() + entity.slice(1).replace('-', ' ')} />
+            </ListItem>
           ))}
-          </section>
-        </section>
-      </section>}
-
-      {option === 2 && <section className="home__right">
-            <b>HISTORIAL</b>
-      </section>}
-
-      {option === 3 && <section className="home__right">
-            <b>REPORTE DE ALERTA</b>
-      </section>}
-
-      {option === 4 && <section className="home__right">
-            <b>AYUDA</b>
-      </section>}
-
-    </main>
+        </List>
+      </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
+        <Container>
+          <Typography variant="h4" gutterBottom>
+            {selectedEntity.charAt(0).toUpperCase() + selectedEntity.slice(1).replace('-', ' ')}
+          </Typography>
+          <Table>
+            <TableHead>
+              <TableRow>
+                {data.length > 0 && Object.keys(data[0]).map((key) => (
+                  <TableCell key={key}>{key}</TableCell>
+                ))}
+                <TableCell>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((row, index) => (
+                <TableRow key={index}>
+                  {Object.keys(row).map((key) => (
+                    <TableCell key={key}>
+                      {editingRow === index ? (
+                        <TextField
+                          value={String(row[key])}
+                          onChange={(e) => handleInputChange(e, key, index)}
+                          fullWidth
+                        />
+                      ) : (
+                        String(row[key])
+                      )}
+                    </TableCell>
+                  ))}
+                  <TableCell>
+                    {editingRow === index ? (
+                      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
+                        <Button variant="contained" color="primary" onClick={() => handleSave(index)}>Save</Button>
+                        <Button variant="contained" color="secondary" onClick={() => setEditingRow(null)}>Cancel</Button>
+                      </Box>
+                    ) : (
+                      <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
+                        <Button variant="contained" color="primary" onClick={() => handleEdit(index)}>Edit</Button>
+                        <Button variant="contained" color="secondary" onClick={() => handleDelete(row.id)}>Delete</Button>
+                      </Box>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+              {newRow && (
+                <TableRow>
+                  {Object.keys(data[0] || {}).map((key) => (
+                    <TableCell key={key}>
+                      <TextField
+                        value={newRow[key] || ''}
+                        onChange={(e) => handleNewRowChange(e, key)}
+                        fullWidth
+                      />
+                    </TableCell>
+                  ))}
+                  <TableCell>
+                    <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 1 }}>
+                      <Button variant="contained" color="primary" onClick={handleAddNew}>Save</Button>
+                      <Button variant="contained" color="secondary" onClick={() => setNewRow(null)}>Cancel</Button>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => setNewRow({})}>Add New</Button>
+        </Container>
+      </Box>
+    </Box>
   )
 }
 
 export default Home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
